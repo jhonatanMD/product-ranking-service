@@ -2,6 +2,16 @@
 
 This project is a service built with **Spring Boot 3.4+** and **Java 21**. It uses a hexagonal architecture organized into three main modules: **Application**, **Domain**, and **Infrastructure**. This service calculates a score for each product based on the provided criteria (such as sales units and stock ratio) and returns the products ranked by the calculated score.
 
+
+## Requirements:
+Make sure the following programs and dependencies are installed:
+
+1. Docker
+
+2. Java 21
+
+3. Maven
+
 ## Architecture
 
 The hexagonal architecture has been chosen to promote separation of concerns and facilitate code maintainability and scalability. The modules are organized as follows:

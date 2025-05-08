@@ -1,0 +1,18 @@
+### Test de ranking de productos OK
+POST http://localhost:8080/products/rank
+Content-Type: application/json
+
+{
+  "salesUnits": 0.3,
+  "stockRatio": 0.7
+}
+
+
+### Test de ranking de productos BAD_REQUEST
+POST http://localhost:8080/products/rank
+Content-Type: application/json
+
+{
+  "salesUnits": 0.3,
+  "sss": 0.7
+}

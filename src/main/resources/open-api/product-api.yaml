@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  description: API for ranking products based on given criteria
+  version: 1.0
+paths:
+  /products/rank:
+    post:
+      tags:
+        - product
+      summary: Rank products based on criteria
+      description: Ranks the products according to the provided criteria (e.g., sales units, stock ratio)
+      operationId: rankProducts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: number
+                format: double
+              description: Criteria for ranking products (e.g., sales units, stock ratio)
+            example:
+              salesUnits: 0.3
+              stockRatio: 0.7
+      responses:
+        '200':
+          description: Ranked products successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductScoreResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid request"
+        "404":
+          description: Not Found Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+components:
+  schemas:
+    ProductScoreResponse:
+      type: object
+      properties:
+        product:
+          $ref: '#/components/schemas/ProductResponse'
+        score:
+          type: number
+          format: double
+          description: The score based on the criteria
+    ProductResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the product
+        name:
+          type: string
+          description: Name of the product
+        salesUnits:
+          type: integer
+          description: Number of sales units
+        stock:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Stock levels for different sizes of the product
+
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-02-28T16:18:05.355827"
+        status:
+          type: integer
+          example: 404
+        error:
+          type: string
+          example: "Not Found"
+        message:
+          type: string
+          example: "No price available."

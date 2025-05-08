@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  ws-product:
+    build:
+      context: .
+    image: ws-product:latest
+    ports:
+      - "8080:8080"
+    container_name: ws-product-container
+    environment:
+      SONAR_LOGIN: admin
+      SONAR_PASSWORD: admin
+    volumes:
+      - ./h2-data:/data
+    networks:
+      - product-network
+
+
+networks:
+  product-network:
+    driver: bridge
+
+
+
+

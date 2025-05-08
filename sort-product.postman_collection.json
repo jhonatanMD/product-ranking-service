@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "cc08fe7e-cea6-4dd8-bec3-92103940477c",
+		"name": "sort-product",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request-ok",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salesUnits\": 0.3,\n    \"stockRatio\": 0.7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/rank",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"rank"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request-bad-request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salesUnits\": 0.3,\n    \"ss\": 0.7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/rank",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"rank"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
